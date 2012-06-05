@@ -1,0 +1,104 @@
+require 'jewel/gem/metadata'
+
+module Jewel
+
+  # The centralized spot for information about a gem.
+  #
+  # @author Matheus Afonso Martins Moreira
+  # @since 0.0.1
+  class Gem
+  end
+
+end
+
+class << Jewel::Gem
+
+  # The gem metadata.
+  #
+  # @return [Jewel::Gem::Metadata] this gem's metadata
+  def metadata
+    @metadata ||= Jewel::Gem::Metadata.new
+  end
+
+  # Forwards everything to this Gem's metadata.
+  def method_missing(method_name, *arguments, &block)
+    metadata.send method_name, *arguments, &block
+  end
+
+  # Sets the name of the gem.
+  #
+  # @param [String, Symbol, #to_s] name the name of the library
+  # @return [String]
+  def name!(name = nil)
+    arguments = [ name ].compact.map &:to_s
+    metadata.send :name, *arguments
+  end
+
+  # Adds a runtime dependency.
+  #
+  # If called within a {development} context, a development dependency will be
+  # added instead.
+  #
+  # @param [String, Symbol] gem the name of the gem
+  # @param [String] version the version of the gem
+  def depend_on(gem, version = nil)
+    metadata.send(if development?
+      :development_dependencies
+    else :dependencies end).merge! gem => version
+  end
+
+  # Executes the given block within a development context, turning runtime
+  # dependencies into development dependencies.
+  #
+  # @yield nothing
+  # @see depend_on
+  def development(&block)
+    @development = true
+    instance_eval &block
+  ensure
+    @development = false
+  end
+
+  # Returns this gem's specification.
+  #
+  # @return [Gem::Specification] the gem specification
+  # @see Jewel::Gem::Metadata.to_spec
+  def spec
+    metadata.to_spec
+  end
+
+  alias gemspec spec
+  alias to_spec spec
+
+  private
+
+  # Whether we are in a development context.
+  #
+  # @return [true, false] whether development mode is enabled
+  # @see development
+  def development?
+    !!@development
+  end
+
+end
+
+class Jewel::Gem
+
+  name! 'jewel'
+  summary 'Easy access to Gem metadata'
+  version '0.0.1'
+  homepage 'https://github.com/matheusmoreira/jewel'
+
+  author 'Matheus Afonso Martins Moreira'
+  email 'matheus.a.m.moreira@gmail.com'
+
+  files `git ls-files`.split "\n"
+
+  development do
+    depend_on :bundler
+    depend_on :redcarpet  # yard uses it for markdown formatting
+    depend_on :rookie
+    depend_on :yard
+  end
+
+end
