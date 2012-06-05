@@ -88,6 +88,7 @@ class Jewel::Gem
   summary 'Easy access to Gem metadata'
   version '0.0.1'
   homepage 'https://github.com/matheusmoreira/jewel'
+  license 'Mozilla Public License, version 2.0'
 
   author 'Matheus Afonso Martins Moreira'
   email 'matheus.a.m.moreira@gmail.com'
