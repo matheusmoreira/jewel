@@ -17,13 +17,28 @@ module Jewel
         instance_eval &block unless block.nil?
       end
 
-      # Associates the name of the missing method with the given arguments.
+      # Assigns or returns attributes from the associated
+      # {#gem_specification gem specification}. If it doesn't respond to it, the
+      # attribute will be stored in this object.
+      #
+      # @since 0.0.4
       def method_missing(method_name, *arguments, &block)
         method = method_name.to_s.gsub(/[=?!\z]/ix, '').strip.intern
         count = arguments.count
-        return stored_attributes[method] if count.zero?
-        value = count == 1 ? arguments.first : arguments
-        stored_attributes[method] = value
+        if count.zero?
+          if spec.respond_to? method
+            spec.send method
+          else
+            stored_attributes[method]
+          end
+        else
+          if spec.respond_to? writer_method = '='.prepend(key.to_s).intern
+            spec.send writer_method, *arguments
+          else
+            value = count == 1 ? arguments.first : arguments
+            stored_attributes[method] = value
+          end
+        end
       end
 
       # This gem's runtime dependencies.
