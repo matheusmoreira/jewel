@@ -32,7 +32,8 @@ module Jewel
             stored_attributes[method]
           end
         else
-          if spec.respond_to? writer_method = '='.prepend(key.to_s).intern
+          writer_method = '='.prepend(method.to_s).intern
+          if spec.respond_to? writer_method
             spec.send writer_method, *arguments
           else
             value = count == 1 ? arguments.first : arguments
