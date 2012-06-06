@@ -39,8 +39,8 @@ class << Jewel::Gem
   # If called within a {development} context, a development dependency will be
   # added instead.
   #
-  # @param [String, Symbol] gem the name of the gem
-  # @param [String] version the version of the gem
+  # @param [String, Symbol, #to_s] gem the name of the gem
+  # @param [String, Symbol, #to_s] version the version of the gem
   # @example
   #   depend_on :jewel    # runtime dependency
   #
