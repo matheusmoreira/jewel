@@ -58,6 +58,10 @@ class << Jewel::Gem
   #
   # @param [Proc] block the block to evaluate
   # @see depend_on
+  # @example
+  #   development do
+  #     depend_on :rspec
+  #   end
   def development(&block)
     @development = true
     instance_eval &block
