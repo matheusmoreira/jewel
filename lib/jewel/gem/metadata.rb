@@ -64,7 +64,8 @@ module Jewel
             :add_development_dependency => development_dependencies
           }.each do |method_name, dependencies|
             dependencies.each do |gem_name, version|
-              gem_specification.send method_name.intern, gem_name.to_s, version
+              arguments = [gem_name, version].compact.map &:to_s
+              gem_specification.send method_name.intern, *arguments
             end
           end
         end
