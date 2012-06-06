@@ -100,7 +100,7 @@ class << Jewel::Gem
     @development = false
   end
 
-  # Returns this gem's specification. If passed an existing spec, it will be
+  # Returns this gem's specification. If passed an existing instance, it will be
   # stored as this gem's specification.
   #
   # @param [::Gem::Specification] existing_specification the existing instance
