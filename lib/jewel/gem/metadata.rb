@@ -68,30 +68,12 @@ module Jewel
         end
       end
 
-      # Uses the stored information to generate a ::Gem::Specification.
+      # The Gem::Specification.
       #
       # @return [::Gem::Specification] the specification
-      def to_spec
-        ::Gem::Specification.new do |gem_specification|
-
-          # Set all attributes
-          stored_attributes.keys.each do |key|
-            writer_method = '='.prepend(key.to_s).intern
-            if gem_specification.respond_to? writer_method
-              gem_specification.send writer_method, stored_attributes[key]
-            end
-          end
-
-          # Add the dependencies
-          {
-            :add_runtime_dependency => false,
-            :add_development_dependency => :only
-          }.each do |method, option|
-            each_dependency development: option do |*arguments|
-              gem_specification.send method, *arguments.compact
-            end
-          end
-        end
+      # @since 0.0.4
+      def gem_specification
+        @gem_specification ||= Gem::Specification.new
       end
 
       private
