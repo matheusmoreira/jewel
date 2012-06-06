@@ -105,6 +105,22 @@ module Jewel
         @stored_attributes ||= {}
       end
 
+      # Converts an array of Gem::Dependency objects into an array of hashes in
+      # the following form:
+      #
+      #   { 'gem_name' => ['= 0.0.0'], ... }
+      #
+      # @return [Hash<String, Array<String>>] names of gems associated with
+      #                                       their requirements
+      # @since 0.0.4
+      def convert_to_hash(dependencies)
+        Hash.new.tap do |hash|
+          dependencies.each do |dependency|
+            hash[dependency.name] = dependency.requirements
+          end
+        end
+      end
+
     end
 
   end
