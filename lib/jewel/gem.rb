@@ -41,6 +41,12 @@ class << Jewel::Gem
   #
   # @param [String, Symbol] gem the name of the gem
   # @param [String] version the version of the gem
+  # @example
+  #   depend_on :jewel    # runtime dependency
+  #
+  #   development do
+  #     depend_on :rspec  # development dependency
+  #   end
   def depend_on(gem, version = nil)
     metadata.send(if development?
       :development_dependencies
