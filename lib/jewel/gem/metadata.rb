@@ -84,8 +84,8 @@ module Jewel
           when :only then development_dependencies
           when  true then all_dependencies
           else dependencies
-        end.each do |gem_name, version|
-          yield gem_name.to_s, version
+        end.each do |gem_name, *requirements|
+          yield gem_name.to_s, *requirements
         end
       end
 
