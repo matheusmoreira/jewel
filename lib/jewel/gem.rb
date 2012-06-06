@@ -106,7 +106,7 @@ class << Jewel::Gem
   # @return [::Gem::Specification] the gem specification
   # @see Jewel::Gem::Metadata#gem_specification
   def specification
-    metadata.to_spec
+    metadata.gem_specification
   end
 
   alias spec    specification
