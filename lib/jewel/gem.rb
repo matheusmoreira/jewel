@@ -67,6 +67,18 @@ class << Jewel::Gem
     else :dependencies end).merge! gem => version
   end
 
+  # Makes sure the correct versions of this gem's dependencies are loaded at
+  # runtime, no matter which versions are installed locally.
+  #
+  # @option options [true, false, :only] :development (false) which set of
+  #   dependencies should be activated
+  # @since 0.0.2
+  def activate_dependencies!(options = {})
+    metadata.each_dependency options do |*arguments|
+      gem *arguments.compact
+    end
+  end
+
   # Executes the given block within a development context, turning runtime
   # dependencies into development dependencies.
   #
