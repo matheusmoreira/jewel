@@ -40,6 +40,15 @@ module Jewel
         @development_dependencies ||= {}
       end
 
+      # Runtime and development dependencies. The former takes precedence,
+      # should version requirements conflict.
+      #
+      # @return [Hash] name => version pairs
+      # @since 0.0.2
+      def all_dependencies
+        development_dependencies.merge dependencies
+      end
+
       # Uses the stored information to generate a ::Gem::Specification.
       #
       # @return [::Gem::Specification] the specification
