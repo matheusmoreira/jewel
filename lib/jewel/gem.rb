@@ -59,7 +59,7 @@ class << Jewel::Gem
   # added instead.
   #
   # @param [String, Symbol, #to_s] gem the name of the gem
-  # @param [String, Symbol, #to_s] version the version of the gem
+  # @param [String, Symbol, #to_s] requirements the version requirements
   # @see development
   # @example
   #   depend_on :jewel    # runtime dependency
@@ -67,10 +67,9 @@ class << Jewel::Gem
   #   development do
   #     depend_on :rspec  # development dependency
   #   end
-  def depend_on(gem, version = nil)
-    metadata.send(if development?
-      :development_dependencies
-    else :dependencies end).merge! gem => version
+  def depend_on(gem, *requirements)
+    method = development? ? :add_development_dependency : :add_dependency
+    specification.send method, gem.to_s, *requirements
   end
 
   # Makes sure the correct versions of this gem's dependencies are loaded at
