@@ -50,7 +50,7 @@ class << Jewel::Gem
   # Executes the given block within a development context, turning runtime
   # dependencies into development dependencies.
   #
-  # @yield nothing
+  # @param [Proc] block the block to evaluate
   # @see depend_on
   def development(&block)
     @development = true
