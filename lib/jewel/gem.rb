@@ -104,8 +104,8 @@ class << Jewel::Gem
   # Returns this gem's specification.
   #
   # @return [::Gem::Specification] the gem specification
-  # @see Jewel::Gem::Metadata#to_spec
-  def spec
+  # @see Jewel::Gem::Metadata#gem_specification
+  def specification
     metadata.to_spec
   end
 
