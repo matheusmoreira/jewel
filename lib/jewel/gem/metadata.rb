@@ -78,16 +78,14 @@ module Jewel
       # @yieldparam [String] gem_name the name of the gem
       # @yieldparam [Array<String>] requirements the version requirements
       # @since 0.0.2
-      def each_dependency(options = {})
+      def each_dependency(options = {}, &block)
         return enum_for :each_dependency, options unless block_given?
         development = options.fetch :development, false
         case development
           when :only then development_dependencies
           when  true then all_dependencies
           else dependencies
-        end.each do |gem_name, *requirements|
-          yield gem_name.to_s, *requirements
-        end
+        end.each &block
       end
 
       # The Gem::Specification. If passed an existing instance, it will be
