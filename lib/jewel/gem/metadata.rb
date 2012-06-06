@@ -54,8 +54,10 @@ module Jewel
 
           # Set all attributes
           stored_attributes.keys.each do |key|
-            writer = '='.prepend key.to_s
-            gem_specification.send writer, stored_attributes[key] if gem_specification.respond_to? writer
+            writer_method = '='.prepend(key.to_s).intern
+            if gem_specification.respond_to? writer_method
+              gem_specification.send writer_method, stored_attributes[key]
+            end
           end
 
           # Add the dependencies
