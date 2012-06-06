@@ -2,7 +2,7 @@ require 'jewel/gem/metadata'
 
 module Jewel
 
-  # The centralized spot for information about a gem.
+  # Stores information about a gem.
   #
   # @author Matheus Afonso Martins Moreira
   # @since 0.0.1
