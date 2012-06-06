@@ -20,7 +20,7 @@ class << Jewel::Gem
     @metadata ||= Jewel::Gem::Metadata.new
   end
 
-  # Forwards everything to this Gem's metadata.
+  # Forwards everything to this gem's metadata.
   def method_missing(method_name, *arguments, &block)
     metadata.send method_name, *arguments, &block
   end
@@ -85,7 +85,7 @@ end
 class Jewel::Gem
 
   name! :jewel
-  summary 'Easy access to Gem metadata'
+  summary 'Easy access to gem metadata'
   version '0.0.1'
   homepage 'https://github.com/matheusmoreira/jewel'
   license 'Mozilla Public License, version 2.0'
