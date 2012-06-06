@@ -42,6 +42,7 @@ class << Jewel::Gem
   # @return [String] the gem root as an absolute path
   # @since 0.0.2
   def root(relative_to = nil)
+    # caller returns an array of strings that are like “file:line” or “file:line: in `method’”
     file = caller.first.split(/:/).first
     arguments = []
     unless relative_to.nil?
