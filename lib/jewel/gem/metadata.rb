@@ -122,7 +122,7 @@ module Jewel
       def convert_to_hash(dependencies)
         Hash.new.tap do |hash|
           dependencies.each do |dependency|
-            hash[dependency.name] = dependency.requirements
+            hash[dependency.name] = dependency.requirements_list
           end
         end
       end
