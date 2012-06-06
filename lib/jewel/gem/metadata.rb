@@ -49,6 +49,26 @@ module Jewel
         development_dependencies.merge dependencies
       end
 
+      # Yields dependencies to the given block, or returns an enumerator.
+      #
+      # @param [Hash] options iteration options
+      # @option options [true, false, :only] :development (false) whether
+      #   runtime and development dependencies should be included
+      # @yieldparam [String] gem_name the name of the gem
+      # @yieldparam [String, nil] version the required version
+      # @since 0.0.2
+      def each_dependency(options = {})
+        return enum_for :each_dependency, options unless block_given?
+        development = options.fetch :development, false
+        case development
+          when :only then development_dependencies
+          when  true then all_dependencies
+          else dependencies
+        end.each do |gem_name, version|
+          yield gem_name.to_s, version
+        end
+      end
+
       # Uses the stored information to generate a ::Gem::Specification.
       #
       # @return [::Gem::Specification] the specification
