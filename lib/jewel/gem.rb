@@ -74,8 +74,8 @@ class << Jewel::Gem
   #   dependencies should be activated
   # @since 0.0.2
   def activate_dependencies!(options = {})
-    metadata.each_dependency options do |*arguments|
-      gem *arguments.compact
+    metadata.each_dependency options do |name, version|
+      gem name, version unless version.nil?
     end
   end
 
