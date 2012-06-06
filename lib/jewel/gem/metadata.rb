@@ -13,14 +13,11 @@ module Jewel
       # instance.
       #
       # @param [Proc] block the initializer block
-      # @since 0.0.1
       def initialize(&block)
         instance_eval &block unless block.nil?
       end
 
       # Associates the name of the missing method with the given arguments.
-      #
-      # @since 0.0.1
       def method_missing(method_name, *arguments, &block)
         method = method_name.to_s.gsub(/[=?!\z]/ix, '').strip.intern
         count = arguments.count
@@ -32,7 +29,6 @@ module Jewel
       # This gem's runtime dependencies.
       #
       # @return [Hash] name => version pairs
-      # @since 0.0.1
       def dependencies
         @dependencies ||= {}
       end
@@ -40,7 +36,6 @@ module Jewel
       # This gem's development dependencies.
       #
       # @return [Hash] name => version pairs
-      # @since 0.0.1
       def development_dependencies
         @development_dependencies ||= {}
       end
@@ -48,7 +43,6 @@ module Jewel
       # Uses the stored information to generate a ::Gem::Specification.
       #
       # @return [::Gem::Specification] the specification
-      # @since 0.0.1
       def to_spec
         ::Gem::Specification.new do |gem_specification|
 
@@ -78,7 +72,6 @@ module Jewel
       # The stored gem attributes.
       #
       # @return [Hash] hash holding information about the gem
-      # @since 0.0.1
       def stored_attributes
         @stored_attributes ||= {}
       end
