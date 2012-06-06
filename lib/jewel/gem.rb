@@ -42,8 +42,13 @@ class << Jewel::Gem
   # @return [String] the gem root as an absolute path
   # @since 0.0.2
   def root(relative_to = nil)
+    file = caller.first.split(/:/).first
     arguments = []
-    arguments << File.expand_path(relative_to.to_s, File.dirname(__FILE__)) unless relative_to.nil?
+    unless relative_to.nil?
+      relative_to = relative_to.to_s
+      file = File.dirname file
+      arguments << File.expand_path(relative_to, file)
+    end
     metadata.send :root, *arguments
   end
 
