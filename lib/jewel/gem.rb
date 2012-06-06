@@ -117,6 +117,7 @@ class Jewel::Gem
   email 'matheus.a.m.moreira@gmail.com'
 
   files `git ls-files`.split "\n"
+  root '../..'
 
   development do
     depend_on :bundler
