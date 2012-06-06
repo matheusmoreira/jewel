@@ -85,12 +85,11 @@ module Jewel
 
           # Add the dependencies
           {
-            :add_runtime_dependency => dependencies,
-            :add_development_dependency => development_dependencies
-          }.each do |method_name, dependencies|
-            dependencies.each do |gem_name, version|
-              arguments = [gem_name, version].compact.map &:to_s
-              gem_specification.send method_name.intern, *arguments
+            :add_runtime_dependency => false,
+            :add_development_dependency => :only
+          }.each do |method_name, option|
+            each_dependency development: option do |*arguments|
+              gem_specification.send method_name.intern, *arguments.compact
             end
           end
         end
