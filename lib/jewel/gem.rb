@@ -73,7 +73,7 @@ class << Jewel::Gem
   # Returns this gem's specification.
   #
   # @return [::Gem::Specification] the gem specification
-  # @see Jewel::Gem::Metadata.to_spec
+  # @see Jewel::Gem::Metadata#to_spec
   def spec
     metadata.to_spec
   end
