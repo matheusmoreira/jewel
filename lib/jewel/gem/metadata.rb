@@ -46,14 +46,14 @@ module Jewel
       #
       # @return [Hash] name => version pairs
       def dependencies
-        @dependencies ||= {}
+        convert_to_hash specification.runtime_dependencies
       end
 
       # This gem's development dependencies.
       #
       # @return [Hash] name => version pairs
       def development_dependencies
-        @development_dependencies ||= {}
+        convert_to_hash specification.development_dependencies
       end
 
       # Runtime and development dependencies. The former takes precedence,
