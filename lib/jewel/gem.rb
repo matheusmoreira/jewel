@@ -109,8 +109,8 @@ class << Jewel::Gem
     metadata.to_spec
   end
 
-  alias gemspec spec
-  alias to_spec spec
+  alias spec    specification
+  alias to_spec specification
 
   private
 
