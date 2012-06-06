@@ -41,6 +41,7 @@ class << Jewel::Gem
   #
   # @param [String, Symbol, #to_s] gem the name of the gem
   # @param [String, Symbol, #to_s] version the version of the gem
+  # @see development
   # @example
   #   depend_on :jewel    # runtime dependency
   #
