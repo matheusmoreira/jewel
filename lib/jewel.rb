@@ -1,4 +1,4 @@
-# Provides easy access to Gem metadata in an object oriented fashion.
+# Easy, object-oriented access to Gem metadata.
 #
 # @author Matheus Afonso Martins Moreira
 # @since 0.0.1
