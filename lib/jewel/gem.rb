@@ -25,7 +25,7 @@ class << Jewel::Gem
     metadata.send method_name, *arguments, &block
   end
 
-  # Sets the name of the gem.
+  # Sets the name of the gem. Returns the name if not given an argument.
   #
   # @param [String, Symbol, #to_s] name the name of the library
   # @return [String]
