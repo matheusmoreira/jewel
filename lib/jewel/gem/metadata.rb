@@ -87,9 +87,9 @@ module Jewel
           {
             :add_runtime_dependency => false,
             :add_development_dependency => :only
-          }.each do |method_name, option|
+          }.each do |method, option|
             each_dependency development: option do |*arguments|
-              gem_specification.send method_name.intern, *arguments.compact
+              gem_specification.send method, *arguments.compact
             end
           end
         end
