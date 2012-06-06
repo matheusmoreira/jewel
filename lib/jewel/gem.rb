@@ -40,6 +40,7 @@ class << Jewel::Gem
   # @param [String, #to_s] relative_to the gem root relative to the current
   #                                    directory
   # @return [String] the gem root as an absolute path
+  # @since 0.0.2
   def root(relative_to = nil)
     arguments = []
     arguments << File.expand_path(relative_to.to_s, File.dirname(__FILE__)) unless relative_to.nil?
