@@ -34,6 +34,18 @@ class << Jewel::Gem
     metadata.send :name, *arguments
   end
 
+  # Sets the root of the gem, relative to the directory where the current file
+  # is located. Returns the gem root if not given an argument.
+  #
+  # @param [String, #to_s] relative_to the gem root relative to the current
+  #                                    directory
+  # @return [String] the gem root as an absolute path
+  def root(relative_to = nil)
+    arguments = []
+    arguments << File.expand_path(relative_to.to_s, File.dirname(__FILE__)) unless relative_to.nil?
+    metadata.send :root, *arguments
+  end
+
   # Adds a runtime dependency.
   #
   # If called within a {development} context, a development dependency will be
