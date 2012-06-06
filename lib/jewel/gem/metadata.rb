@@ -44,22 +44,27 @@ module Jewel
 
       # This gem's runtime dependencies.
       #
-      # @return [Hash] name => version pairs
+      # @return [Hash<String, Array<String>>] names of gems associated with
+      #                                       their requirements
       def dependencies
         convert_to_hash specification.runtime_dependencies
       end
 
+      alias runtime_dependencies dependencies
+
       # This gem's development dependencies.
       #
-      # @return [Hash] name => version pairs
+      # @return [Hash<String, Array<String>>] names of gems associated with
+      #                                       their requirements
       def development_dependencies
         convert_to_hash specification.development_dependencies
       end
 
-      # Runtime and development dependencies. The former takes precedence,
-      # should version requirements conflict.
+      # Runtime and development dependencies. The former takes precedence in
+      # case of conflict.
       #
-      # @return [Hash] name => version pairs
+      # @return [Hash<String, Array<String>>] names of gems associated with
+      #                                       their requirements
       # @since 0.0.2
       def all_dependencies
         development_dependencies.merge dependencies
