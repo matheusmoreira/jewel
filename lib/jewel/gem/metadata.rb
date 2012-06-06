@@ -51,7 +51,6 @@ module Jewel
 
       # Yields dependencies to the given block, or returns an enumerator.
       #
-      # @param [Hash] options iteration options
       # @option options [true, false, :only] :development (false) whether
       #   runtime and development dependencies should be included
       # @yieldparam [String] gem_name the name of the gem
