@@ -84,7 +84,7 @@ end
 
 class Jewel::Gem
 
-  name! 'jewel'
+  name! :jewel
   summary 'Easy access to Gem metadata'
   version '0.0.1'
   homepage 'https://github.com/matheusmoreira/jewel'
