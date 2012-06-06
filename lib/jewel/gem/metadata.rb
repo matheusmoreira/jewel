@@ -88,7 +88,7 @@ module Jewel
       # @return [::Gem::Specification] the specification
       # @since 0.0.4
       def gem_specification
-        @gem_specification ||= Gem::Specification.new
+        @gem_specification ||= ::Gem::Specification.new
       end
 
       alias spec    gem_specification
