@@ -27,7 +27,7 @@ class << Jewel::Gem
 
   # Sets the name of the gem. Returns the name if not given an argument.
   #
-  # @param [String, Symbol, #to_s] name the name of the library
+  # @param [String, Symbol, #to_s] name the name of the gem
   # @return [String]
   def name!(name = nil)
     arguments = [ name ].compact.map &:to_s
