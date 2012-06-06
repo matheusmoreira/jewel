@@ -20,7 +20,7 @@ class << Jewel::Gem
     @metadata ||= Jewel::Gem::Metadata.new
   end
 
-  # Forwards everything to this gem's metadata.
+  # Forwards everything to this gem's {metadata}.
   def method_missing(method_name, *arguments, &block)
     metadata.send method_name, *arguments, &block
   end
