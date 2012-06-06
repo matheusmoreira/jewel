@@ -50,7 +50,7 @@ class << Jewel::Gem
   def depend_on(gem, version = nil)
     metadata.send(if development?
       :development_dependencies
-    else :dependencies end).merge! gem.to_s => version.to_s
+    else :dependencies end).merge! gem => version
   end
 
   # Executes the given block within a development context, turning runtime
