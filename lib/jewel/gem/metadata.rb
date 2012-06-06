@@ -74,8 +74,9 @@ module Jewel
       #
       # @option options [true, false, :only] :development (false) whether
       #   runtime and development dependencies should be included
+      # @yield [gem_name, *requirements]
       # @yieldparam [String] gem_name the name of the gem
-      # @yieldparam [String, nil] version the required version
+      # @yieldparam [Array<String>] requirements the version requirements
       # @since 0.0.2
       def each_dependency(options = {})
         return enum_for :each_dependency, options unless block_given?
