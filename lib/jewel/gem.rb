@@ -59,7 +59,7 @@ class << Jewel::Gem
   # added instead.
   #
   # @param [String, Symbol, #to_s] gem the name of the gem
-  # @param [String, Symbol, #to_s] requirements the version requirements
+  # @param [Array<String>] requirements the version requirements
   # @see development
   # @example
   #   depend_on :jewel    # runtime dependency
