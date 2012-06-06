@@ -97,9 +97,10 @@ module Jewel
         @gem_specification ||= ::Gem::Specification.new
       end
 
-      alias spec    gem_specification
-      alias gemspec gem_specification
-      alias to_spec gem_specification
+      alias spec          gem_specification
+      alias gemspec       gem_specification
+      alias to_spec       gem_specification
+      alias specification gem_specification
 
       private
 
