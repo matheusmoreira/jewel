@@ -20,8 +20,6 @@ module Jewel
       # Assigns or returns attributes from the associated
       # {#gem_specification gem specification}. If it doesn't respond to it, the
       # attribute will be stored in this object.
-      #
-      # @since 0.0.4
       def method_missing(method_name, *arguments, &block)
         method = method_name.to_s.gsub(/[=?!\z]/ix, '').strip.intern
         count = arguments.count
