@@ -45,9 +45,9 @@ module Jewel
         @development_dependencies ||= {}
       end
 
-      # Use the stored information to generate a Gem::Specification.
+      # Use the stored information to generate a ::Gem::Specification.
       #
-      # @return [Gem::Specification] the specification
+      # @return [::Gem::Specification] the specification
       # @since 0.0.1
       def to_spec
         ::Gem::Specification.new do |gem_specification|
