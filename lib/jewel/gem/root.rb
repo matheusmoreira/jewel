@@ -3,7 +3,7 @@ require 'pathname'
 module Jewel
   class Gem
 
-    # A Pathname which allows one to access subdirectories by chaining methods.
+    # A Pathname that allows subdirectory access through method chaining.
     #
     # @author Matheus Afonso Martins Moreira
     # @since 0.0.5
