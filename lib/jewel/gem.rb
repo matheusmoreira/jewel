@@ -1,4 +1,5 @@
 require 'jewel/gem/metadata'
+require 'jewel/gem/root'
 
 module Jewel
 
@@ -48,7 +49,8 @@ class << Jewel::Gem
       # caller returns an array of strings that are like “file:line” or “file:line: in `method’”
       file = caller.first.split(/:/).first
       directory = File.dirname file
-      arguments << File.expand_path(relative_to, directory)
+      path = File.expand_path(relative_to, directory)
+      arguments.push Jewel::Gem::Root.new path
     end
     metadata.send :root, *arguments
   end
