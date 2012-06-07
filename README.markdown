@@ -56,8 +56,8 @@ Tools like `gem` and `bundler` assume the `.gemspec` returns a
 # External libraries? In _my_ `.gemspec`?!
 
 Right. Unlike `.gemspec` generators, Jewel will not duplicate information and it
-will _certainly_ not make a giant mess in your version control diff. These are
-actually some of the reasons why I wrote this gem.
+will _certainly_ not make a giant mess in your version control system's diff.
+These are actually some of the reasons why I wrote this gem.
 
 However, you will probably run into problems if you use tools that parse your
 `.gemspec` or are unable to `require` your gem. If that's your case, then you'll
