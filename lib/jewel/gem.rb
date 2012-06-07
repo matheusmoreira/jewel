@@ -74,6 +74,8 @@ class << Jewel::Gem
     specification.send method, gem.to_s, *requirements
   end
 
+  alias depends_on depend_on
+
   # Makes sure the correct versions of this gem's dependencies are loaded at
   # runtime, no matter which versions are installed locally.
   #
