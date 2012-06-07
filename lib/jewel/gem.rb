@@ -47,7 +47,7 @@ class << Jewel::Gem
     unless relative_to.nil?
       relative_to = relative_to.to_s
       # caller returns an array of strings that are like “file:line” or “file:line: in `method’”
-      file = caller.first.split(/:/).first
+      file = caller.first.sub /:\d+(:in .*)?\z/, ''
       directory = File.dirname file
       path = File.expand_path(relative_to, directory)
       arguments.push Jewel::Gem::Root.new path
