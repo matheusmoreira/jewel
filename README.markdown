@@ -78,7 +78,7 @@ specification:
     end
 
 Hey, is that a `Rails.root`-like method? Exactly! It basically returns a dynamic
-Pathname allows you join paths by chaining methods and passing arguments to
+Pathname allows you to join paths by chaining methods and passing arguments to
 them:
 
     root = Awesome::Gem.root
