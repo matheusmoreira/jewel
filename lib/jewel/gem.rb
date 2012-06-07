@@ -131,6 +131,7 @@ class Jewel::Gem
 
   name! :jewel
   summary 'Gem metadata at your fingertips'
+  description 'Jewel provides an easy way to access information about a gem at runtime'
   version '0.0.4'
   homepage 'https://github.com/matheusmoreira/jewel'
   license 'Mozilla Public License, version 2.0'
