@@ -130,7 +130,7 @@ end
 class Jewel::Gem
 
   name! :jewel
-  summary 'Easy access to gem metadata'
+  summary 'Gem metadata at your fingertips'
   version '0.0.4'
   homepage 'https://github.com/matheusmoreira/jewel'
   license 'Mozilla Public License, version 2.0'
