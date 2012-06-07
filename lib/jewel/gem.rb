@@ -143,6 +143,7 @@ class Jewel::Gem
     depend_on :bundler
     depend_on :redcarpet  # yard uses it for markdown formatting
     depend_on :rookie
+    depend_on :rspec
     depend_on :yard
   end
 
