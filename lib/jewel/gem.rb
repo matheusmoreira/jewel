@@ -131,25 +131,8 @@ end
 
 class Jewel::Gem
 
-  name! :jewel
-  summary 'Gem metadata at your fingertips'
-  description 'Jewel provides an easy way to access information about a gem at runtime'
-  version '0.0.6'
-  homepage 'https://github.com/matheusmoreira/jewel'
-  license 'Mozilla Public License, version 2.0'
-
-  author 'Matheus Afonso Martins Moreira'
-  email 'matheus.a.m.moreira@gmail.com'
-
-  files `git ls-files`.split "\n"
   root '../..'
 
-  development do
-    depend_on :bundler
-    depend_on :redcarpet  # yard uses it for markdown formatting
-    depend_on :rookie
-    depend_on :rspec
-    depend_on :yard
-  end
+  specification ::Gem::Specification.load root.join('jewel.gemspec').to_s
 
 end
