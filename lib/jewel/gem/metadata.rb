@@ -21,7 +21,7 @@ module Jewel
       # {#gem_specification gem specification}. If it doesn't respond to it, the
       # attribute will be stored in this object.
       def method_missing(method_name, *arguments, &block)
-        method = method_name.to_s.gsub(/[=?!\z]/ix, '').strip.intern
+        method = method_name.to_s.gsub(/[=?!]+\z/ix, '').strip.intern
         count = arguments.count
         if count.zero?
           if spec.respond_to? method
