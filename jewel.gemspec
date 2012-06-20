@@ -1,14 +1,15 @@
 #!/usr/bin/env gem build
 # encoding: utf-8
 
-current_directory = File.dirname __FILE__
-version_file = File.expand_path 'jewel.version', current_directory
-
 Gem::Specification.new 'jewel' do |gem|
+
+  current_directory = File.dirname __FILE__
+  version_file = File.expand_path "#{gem.name}.version", current_directory
+
+  gem.version = File.read(version_file).chomp
 
   gem.summary = 'Gem metadata at your fingertips'
   gem.description = 'Provides an easy way to access information about a gem at runtime'
-  gem.version = File.read(version_file).chomp
   gem.homepage = 'https://github.com/matheusmoreira/jewel'
   gem.license = 'Mozilla Public License, version 2.0'
 
