@@ -1,14 +1,14 @@
 #!/usr/bin/env gem build
 # encoding: utf-8
 
-def version_from_file(name = 'VERSION', directory = File.dirname(__FILE__))
+version_from_file = lambda do |name = 'VERSION', directory = File.dirname(__FILE__)|
   version_file = File.expand_path name, directory
   File.read(version_file).chomp
 end
 
 Gem::Specification.new 'jewel' do |gem|
 
-  gem.version = gem.version_from_file
+  gem.version = version_from_file.call
 
   gem.summary = 'Gem metadata at your fingertips'
   gem.description = 'Provides an easy way to access information about a gem at runtime'
