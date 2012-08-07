@@ -42,22 +42,27 @@ class << Jewel::Gem
     metadata.send :name, *arguments
   end
 
-  # Sets the root of the gem, relative to the directory where the current file
-  # is located. Returns the gem root if not given an argument.
+  # The directory where the gem is located.
   #
-  # @param [String, #to_s] relative_to the gem root relative to the current
-  #                                    directory
-  # @return [String] the gem root as an absolute path
+  # @overload root
+  #   Returns the gem's root directory.
+  #
+  # @overload root(directory)
+  #   Sets the gem's root directory.
+  #
+  #   @param [#to_s] directory the path to the gem's root directory, relative to
+  #     the location of the current file
+  #
+  # @return [String] the gem's root directory as an absolute path
   # @since 0.0.2
-  def root(relative_to = nil)
-    arguments = []
-    unless relative_to.nil?
-      relative_to = relative_to.to_s
+  def root(*arguments)
+    unless arguments.empty?
+      relative_to = arguments.shift.to_s
       # caller returns an array of strings that are like “file:line” or “file:line: in `method’”
       file = caller.first.sub /:\d+(:in .*)?\z/, ''
       directory = File.dirname file
-      path = File.expand_path(relative_to, directory)
-      arguments.push Jewel::Path.new path
+      path = File.expand_path relative_to, directory
+      arguments.clear.unshift Jewel::Path.new path
     end
     metadata.send :root, *arguments
   end
