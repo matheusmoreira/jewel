@@ -104,14 +104,36 @@ class << Jewel::Gem
     @development = false
   end
 
-  # Returns this gem's specification. If passed an existing instance, it will be
-  # stored as this gem's specification.
+  # This gem's specification.
   #
-  # @param [::Gem::Specification] existing_specification the existing instance
+  # @overload specification
+  #   Returns this gem's specification.
+  #
+  # @overload specification(path_or_specification)
+  #   Sets this gem's specification.
+  #
+  #   If given a +::Gem::Specification+ object, it will be used. If given a path
+  #   to a file, it will be loaded.
+  #
+  #   If the given path is not absolute, it will be assumed to be relative to
+  #   this gem's root directory.
+  #
+  #   @param [::Gem::Specification, #to_s] path_or_specification the existing
+  #     gem specification or the path to it
+  #
   # @return [::Gem::Specification] the gem specification
   # @see Jewel::Gem::Metadata#gem_specification
-  def specification(existing_specification = nil)
-    metadata.gem_specification existing_specification
+  def specification(*arguments)
+    unless arguments.first.is_a? ::Gem::Specification
+      path = Jewel::Path.new arguments.shift
+      path = root.join path if path.relative?
+      directory, gemspec = path.split
+      Dir.chdir directory do
+        spec = ::Gem::Specification.load gemspec.to_s
+        arguments.clear.unshift spec
+      end
+    end if arguments.any?
+    metadata.gem_specification *arguments
   end
 
   alias spec    specification
@@ -133,6 +155,6 @@ class Jewel::Gem
 
   root '../..'
 
-  specification ::Gem::Specification.load root.join('jewel.gemspec').to_s
+  specification 'jewel.gemspec'
 
 end
