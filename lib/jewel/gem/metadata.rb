@@ -14,7 +14,7 @@ module Jewel
       #
       # @param [Proc] block the initializer block
       def initialize(&block)
-        instance_eval &block unless block.nil?
+        instance_eval &block if block_given?
       end
 
       # Assigns or returns attributes from the associated
