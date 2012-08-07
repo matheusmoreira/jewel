@@ -2,6 +2,8 @@
 
 Gem metadata at your fingertips.
 
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/matheusmoreira/jewel)
+
 # What's this for?
 
 Sometimes it's useful to access information about a gem at runtime. Jewel exists
@@ -41,8 +43,8 @@ Let's say you have a gem named `awesome`. Let's define the `Awesome::Gem` class:
       end
     end
 
-Now you and others can access your specification at runtime. Let's use it to
-set up the `awesome.gemspec` file:
+Now you and others can access your specification at runtime. Let's use
+it to set up the `awesome.gemspec` file:
 
     #!/usr/bin/env gem build
     # encoding: utf-8
@@ -55,14 +57,15 @@ Tools like `gem` and `bundler` assume the `.gemspec` returns a
 
 # External libraries? In _my_ `.gemspec`?!
 
-Right. Unlike `.gemspec` generators, Jewel will not duplicate information and it
-will _certainly_ not make a giant mess in your version control system's diff.
-These are actually some of the reasons why I wrote this gem.
+Right. Unlike `.gemspec` generators, Jewel will not duplicate information
+and it will _certainly_ not make a giant mess in your version control
+system's diff. These are actually some of the reasons why I wrote this
+gem.
 
-However, you will probably run into problems if you use tools that parse your
-`.gemspec` or are unable to `require` your gem. If that's your case, then you'll
-be happy to know that you can also use your existing handwritten
-specification:
+However, you will probably run into problems if you use tools that parse
+your `.gemspec` or are unable to `require` your gem. If that's your case,
+then you'll be happy to know that you can also use your existing
+handwritten specification:
 
     # lib/awesome/gem.rb
     require 'jewel'
@@ -70,16 +73,15 @@ specification:
     module Awesome
       class Gem < Jewel::Gem
         root '../..'
-        path_to_gemspec = root.join 'awesome.gemspec'
 
         # specification is aliased as spec
-        spec ::Gem::Specification.load path_to_gemspec.to_s
+        spec 'awesome.gemspec'
       end
     end
 
-Hey, is that a `Rails.root`-like method? Exactly! It basically returns a dynamic
-Pathname allows you to join paths by chaining methods and passing arguments to
-them:
+Hey, is that a `Rails.root`-like method? Exactly! It basically returns a
+dynamic Pathname allows you to join paths by chaining methods and
+passing arguments to them:
 
     root = Awesome::Gem.root
     root.lib.awesome 'gem.rb'  # lib/awesome/gem.rb
@@ -87,10 +89,11 @@ them:
 
 # Nifty. What else can it do?
 
-It can make sure that the correct versions of your dependencies will be loaded.
-When you `require` some code, RubyGems will actually load the latest version of
-the gem that it can find, even if you've specified a lower version in the
-specification. To make it load the versions you wanted, you can simply write:
+It can make sure that the correct versions of your dependencies will be
+loaded. When you `require` some code, RubyGems will actually load the
+latest version of the gem that it can find, even if you've specified a
+lower version in the specification. To make it load the versions you
+wanted, you can simply write:
 
     Awesome::Gem.activate_dependencies!
 
