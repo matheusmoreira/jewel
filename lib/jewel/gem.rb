@@ -26,12 +26,19 @@ class << Jewel::Gem
     metadata.send method_name, *arguments, &block
   end
 
-  # Sets the name of the gem. Returns the name if not given an argument.
+  # The name of the gem.
   #
-  # @param [String, Symbol, #to_s] name the name of the gem
-  # @return [String] the name of the gem
-  def name!(name = nil)
-    arguments = [ name ].compact.map &:to_s
+  # @overload name
+  #   Returns the name of the gem.
+  #
+  # @overload name(string)
+  #   Sets the name of the gem.
+  #
+  #   @param [#to_s] string the gem's name
+  #
+  # @return [String] the gem's name
+  def name!(*arguments)
+    arguments.map! &:to_s
     metadata.send :name, *arguments
   end
 
