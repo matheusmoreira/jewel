@@ -86,17 +86,20 @@ module Jewel
         end.each &block
       end
 
-      # The Gem::Specification. If passed an existing instance, it will be
-      # used instead.
+      # The +::Gem::Specification+.
       #
-      # @param [::Gem::Specification] existing_specification the existing
-      #                                                      instance
+      # @overload gem_specification
+      #   Returns the +::Gem::Specification+ instance.
+      #
+      # @overload gem_specification(instance)
+      #   Stores the given +::Gem::Specification+ instance.
+      #
+      #   @param [::Gem::Specification] instance the instance
+      #
       # @return [::Gem::Specification] the specification
       # @since 0.0.4
-      def gem_specification(existing_specification = nil)
-        unless existing_specification.nil?
-          @gem_specification = existing_specification
-        end
+      def gem_specification(*arguments)
+        @gem_specification = arguments.shift if arguments.first.is_a? ::Gem::Specification
         @gem_specification ||= ::Gem::Specification.new
       end
 
