@@ -12,6 +12,7 @@ module Jewel
     #
     # @return [Jewel::Path] new instance with the results of the join
     def method_missing(*arguments, &block)
+      arguments.map! &:to_s
       self.class.new join(*arguments), &block
     end
 
