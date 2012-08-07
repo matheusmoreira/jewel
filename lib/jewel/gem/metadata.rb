@@ -40,20 +40,20 @@ module Jewel
         end
       end
 
-      # This gem's runtime dependencies.
+      # The gem's runtime dependencies.
       #
-      # @return [Hash<String, Array<String>>] names of gems associated with
-      #                                       their requirements
+      # @return [Hash{String=>Array<String>}] names of gems associated with
+      #   their requirements
       def dependencies
         convert_to_hash specification.runtime_dependencies
       end
 
       alias runtime_dependencies dependencies
 
-      # This gem's development dependencies.
+      # The gem's development dependencies.
       #
-      # @return [Hash<String, Array<String>>] names of gems associated with
-      #                                       their requirements
+      # @return [Hash{String=>Array<String>}] names of gems associated with
+      #   their requirements
       def development_dependencies
         convert_to_hash specification.development_dependencies
       end
@@ -61,8 +61,8 @@ module Jewel
       # Runtime and development dependencies. The former takes precedence in
       # case of conflict.
       #
-      # @return [Hash<String, Array<String>>] names of gems associated with
-      #                                       their requirements
+      # @return [Hash{String=>Array<String>}] names of gems associated with
+      #   their requirements
       # @since 0.0.2
       def all_dependencies
         development_dependencies.merge dependencies
@@ -122,8 +122,8 @@ module Jewel
       #
       #   { 'gem_name' => ['= 0.0.0'], ... }
       #
-      # @return [Hash<String, Array<String>>] names of gems associated with
-      #                                       their requirements
+      # @return [Hash{String=>Array<String>}] names of gems associated with
+      #   their requirements
       # @since 0.0.4
       def convert_to_hash(dependencies)
         Hash.new.tap do |hash|
