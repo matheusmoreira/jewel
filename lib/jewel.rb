@@ -7,3 +7,4 @@ module Jewel
 end
 
 require 'jewel/gem'
+require 'jewel/path'
