@@ -1,5 +1,5 @@
 require 'jewel/gem/metadata'
-require 'jewel/gem/root'
+require 'jewel/path'
 
 module Jewel
 
@@ -50,7 +50,7 @@ class << Jewel::Gem
       file = caller.first.sub /:\d+(:in .*)?\z/, ''
       directory = File.dirname file
       path = File.expand_path(relative_to, directory)
-      arguments.push Jewel::Gem::Root.new path
+      arguments.push Jewel::Path.new path
     end
     metadata.send :root, *arguments
   end
